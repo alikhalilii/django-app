@@ -13,7 +13,7 @@ def manage_blogs(request):
 
 
 def blog_lists(request):
-  return render(request, "blogs/blogs.html")
+  return render(request, "blogs/blog-home.html")
 
 def blog(request):
-  return render(request, "blogs/single_blog.html")
+  return render(request, "blogs/blog-single.html")
