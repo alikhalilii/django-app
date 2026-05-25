@@ -14,7 +14,9 @@ def manage_blogs(request):
 
 
 def blog_lists(request):
-  return render(request, "blogs/blog-home.html")
+  posts = Post.objects.all()
+  context = {"posts":posts}
+  return render(request, "blogs/blog-home.html", context)
 
 def blog(request):
   return render(request, "blogs/blog-single.html")
@@ -22,4 +24,4 @@ def blog(request):
 def test(request):
   posts = Post.objects.all()
   context = {"posts":posts}
-  return render(request,"test.html",context)
+  return render(request,"test.html", context)
