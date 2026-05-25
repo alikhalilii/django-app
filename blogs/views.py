@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Post
 
 # Create your views here.
 
@@ -17,3 +18,8 @@ def blog_lists(request):
 
 def blog(request):
   return render(request, "blogs/blog-single.html")
+
+def test(request):
+  posts = Post.objects.all()
+  context = {"posts":posts}
+  return render(request,"test.html",context)
