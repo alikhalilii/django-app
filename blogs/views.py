@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import Post
 
 # Create your views here.
@@ -25,3 +25,8 @@ def test(request):
   posts = Post.objects.all()
   context = {"posts":posts}
   return render(request,"test.html", context)
+
+def test2(request , pid):
+  post = get_object_or_404(Post , pk=pid)
+  context = {"post":post}
+  return render(request,"test2.html", context)

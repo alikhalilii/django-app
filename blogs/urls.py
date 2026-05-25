@@ -9,5 +9,6 @@ urlpatterns = [
   path('add-blog', add_blog, name="add-blog"),
   path('remove-blog', remove_blog, name="remove-blog"),
   path('manage-blogs', manage_blogs, name="manage-blogs"),
-  path('test', test, name="test")
+  path('test', test, name="test"),
+  path('test2-<int:pid>', test2, name="test2")
 ]
