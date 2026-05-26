@@ -70,13 +70,7 @@
             <ul class="nav-menu">
               <li><a href="{% url 'myweb:home' %}">Home</a></li>
               <li><a href="{% url 'myweb:about' %}">About</a></li>
-              <li class="menu-has-children">
-                <a href="">Blog</a>
-                <ul>
-                  <li><a href="{% url 'blogs:blog-list' %}">Blog Home</a></li>
-                  <li><a href="{% url 'blogs:blog' %}">Blog Single</a></li>
-                </ul>
-              </li>
+              <li><a href="{% url 'blogs:blog-list' %}">Blog</a></li>
               <li class="menu-has-children">
                 <a href="">Pages</a>
                 <ul>

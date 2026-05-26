@@ -4,7 +4,7 @@ from blogs.views import *
 app_name = "blogs"
 
 urlpatterns = [
-  path('blog', blog, name="blog"),
+  path('<int:pid>', blog, name="blog"),
   path('blog-list', blog_lists, name="blog-list"),
   path('add-blog', add_blog, name="add-blog"),
   path('remove-blog', remove_blog, name="remove-blog"),

@@ -18,8 +18,10 @@ def blog_lists(request):
   context = {"posts":posts}
   return render(request, "blogs/blog-home.html", context)
 
-def blog(request):
-  return render(request, "blogs/blog-single.html")
+def blog(request, pid):
+  post = get_object_or_404(Post , pk=pid)
+  context = {"post":post}
+  return render(request, "blogs/blog-single.html", context)
 
 def test(request):
   posts = Post.objects.all()
