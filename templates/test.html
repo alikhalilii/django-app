@@ -1,3 +1,4 @@
+{% load blog_test_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,18 +7,15 @@
   <title>Document</title>
 </head>
 <body>
-  {% for post in posts %}
-    {% if post.status == 0 %}
-      <h1>unpublished posts:</h1>
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.content }}</p>
-      <small>{{ post.published_date }}</small>
-    {% else %}
-      <h1>published posts:</h1>
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.content }}</p>
-      <small>{{ post.published_date }}</small>
-    {% endif %}
+  <h1>testing page</h1>
+  <p>test hello: {% hello %}</p>
+  <p>test plusTwo: {% plusTwo 4 %}</p>
+  <p>test plusTwo: {% plusTwo %}</p>
+  <p>test total_posts: {% total_posts %}</p>
+  <p>test posts:</p>
+  {% posts as posts_all %}
+  {% for post in posts_all %}
+  <p>{{post}}</p>
   {% endfor %}
 </body>
 </html>

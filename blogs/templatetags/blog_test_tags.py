@@ -1,0 +1,21 @@
+from django import template
+from blogs.models import Post
+register = template.Library()
+
+@register.simple_tag
+def hello():
+  return "hello"
+
+@register.simple_tag
+def plusTwo(a = 0):
+  return a + 2
+
+@register.simple_tag(name="posts")
+def function():
+  posts = Post.objects.filter(status = 1)
+  return posts
+
+@register.simple_tag(name="total_posts")
+def function():
+  posts_count = Post.objects.filter(status = 1).count()
+  return posts_count
