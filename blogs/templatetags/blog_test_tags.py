@@ -23,3 +23,8 @@ def function():
 @register.filter(name="snippet")
 def function(value,limit=20):
   return value[:limit]+ "..."
+
+@register.inclusion_tag("inclusion_tag_test.html",name="inclusion_test")
+def function():
+  posts = Post.objects.filter(status=1).order_by("published_date")[0:2]
+  return {"posts":posts}
