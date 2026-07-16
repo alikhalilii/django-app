@@ -16,6 +16,7 @@
   {% posts as posts_all %}
   {% for post in posts_all %}
   <p>{{post}}</p>
+  <p>test filter: {{post.content|snippet:30}}</p>
   {% endfor %}
 </body>
 </html>

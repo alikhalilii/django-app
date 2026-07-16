@@ -19,3 +19,7 @@ def function():
 def function():
   posts_count = Post.objects.filter(status = 1).count()
   return posts_count
+
+@register.filter(name="snippet")
+def function(value,limit=20):
+  return value[:limit]+ "..."
