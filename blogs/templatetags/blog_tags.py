@@ -28,3 +28,10 @@ def function(value,limit=20):
 def function():
   posts = Post.objects.filter(status=1).order_by("published_date")[0:2]
   return {"posts":posts}
+
+# from here the real tags that we use in project will be created
+
+@register.inclusion_tag("blogs/components/blog_popular_posts.html")
+def latestposts(arg=3):
+  posts = Post.objects.filter(status=1).order_by("published_date")[:arg]
+  return {"posts":posts}

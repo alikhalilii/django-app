@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block body %}
+{% extends 'base.html' %} {% load static %} {% load blog_tags %} {% block body %}
 <!-- start banner Area -->
 <section class="banner-area relative blog-home-banner" id="home">
   <div class="overlay overlay-bg"></div>
@@ -167,7 +167,7 @@
 
           {% include "blogs/components/blog_writer.html" %}
 
-          {% include "blogs/components/blog_popular_posts.html" %}
+          {% latestposts %}
 
           {% include "blogs/components/blog_ads.html" %}
 
