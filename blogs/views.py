@@ -13,8 +13,10 @@ def manage_blogs(request):
   return render(request, "manage-blogs/manage_blogs.html")
 
 
-def blog_lists(request):
+def blog_lists(request,cat_name=None):
   posts = Post.objects.filter(status = 1)
+  if cat_name != None:
+    posts = posts.filter(category__name = cat_name)
   context = {"posts":posts}
   return render(request, "blogs/blog-home.html", context)
 
