@@ -28,6 +28,14 @@ def blog(request, pid):
   context = {"post":post}
   return render(request, "blogs/blog-single.html", context)
 
+def blog_search(request):
+  posts = Post.objects.filter(status = 1)
+  if request.method == "GET":
+    if s := request.GET.get('s'):
+      posts = posts.filter(content__contains = s )
+  context = {"posts":posts}
+  return render(request, "blogs/blog-home.html", context)
+
 def test(request):
   posts = Post.objects.all()
   context = {"posts":posts}
