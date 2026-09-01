@@ -13,10 +13,12 @@ def manage_blogs(request):
   return render(request, "manage-blogs/manage_blogs.html")
 
 
-def blog_lists(request,cat_name=None):
+def blog_lists(request,**kwargs):
   posts = Post.objects.filter(status = 1)
-  if cat_name != None:
-    posts = posts.filter(category__name = cat_name)
+  if kwargs.get("cat_name") != None:
+    posts = posts.filter(category__name = kwargs["cat_name"])
+  if kwargs.get("author_name") != None:
+    posts = posts.filter(author__username = kwargs["author_name"])
   context = {"posts":posts}
   return render(request, "blogs/blog-home.html", context)
 
