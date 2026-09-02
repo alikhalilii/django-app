@@ -5,7 +5,7 @@ app_name = "blogs"
 
 urlpatterns = [
   path('<int:pid>', blog, name="blog"),
-  path('blog-list', blog_lists, name="blog-list"),
+  path('blog-list/', blog_lists, name="blog-list"),
   path('category/<str:cat_name>', blog_lists, name="blog-category"),
   path('author/<str:author_name>', blog_lists, name="blog-author"),
   path('search/',blog_search, name="blog-search"),
