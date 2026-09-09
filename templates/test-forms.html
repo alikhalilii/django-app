@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="{% url 'myweb:test-forms'%}" method="post">
+    {% csrf_token %}
+    <label for="name">name: </label>
+    <input type="text" id="name" name="name"><br>
+    <label for="email">email: </label>
+    <input type="text" id="email" name="email"><br>
+    <label for="subject">subject: </label>
+    <input type="text" id="subject" name="subject"><br>
+    <label for="message">message: </label>
+    <input type="text" id="message" name="message"><br>
+    <button type="submit">submit</button>
+  </form>
+</body>
+</html>
