@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from myweb.models import Contact
-from myweb.forms import NameForm
+from myweb.forms import NameForm , ContactForm
 # Create your views here.
 
 def home_view(request):
@@ -32,18 +32,30 @@ def elements_view(request):
 #     print(name , email , message , subject)
 #   return render(request,"test-forms.html")
 
-## method 2: using django forms
+## method 2: using django forms for forms without connection to models
+# def test_forms(request):
+#   if request.method == "POST":
+#     form = NameForm(request.POST)
+#     if form.is_valid():
+#       name = form.cleaned_data["name"]
+#       email = form.cleaned_data["email"]
+#       subject = form.cleaned_data["subject"]
+#       message = form.cleaned_data["message"]
+#       print(name , email , subject , message)
+#       return HttpResponse("done")
+#     else:
+#       return HttpResponse("not valid")
+#   form = NameForm()
+#   return render(request,"test-forms.html", {'form':form})
+
+## method 3: using model forms for forms with connection to models
 def test_forms(request):
   if request.method == "POST":
-    form = NameForm(request.POST)
+    form = ContactForm(request.POST)
     if form.is_valid():
-      name = form.cleaned_data["name"]
-      email = form.cleaned_data["email"]
-      subject = form.cleaned_data["subject"]
-      message = form.cleaned_data["message"]
-      print(name , email , subject , message)
+      form.save()
       return HttpResponse("done")
     else:
       return HttpResponse("not valid")
-  form = NameForm()
+  form = ContactForm()
   return render(request,"test-forms.html", {'form':form})
