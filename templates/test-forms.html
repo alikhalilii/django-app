@@ -8,14 +8,7 @@
 <body>
   <form action="{% url 'myweb:test-forms'%}" method="post">
     {% csrf_token %}
-    <label for="name">name: </label>
-    <input type="text" id="name" name="name"><br>
-    <label for="email">email: </label>
-    <input type="text" id="email" name="email"><br>
-    <label for="subject">subject: </label>
-    <input type="text" id="subject" name="subject"><br>
-    <label for="message">message: </label>
-    <input type="text" id="message" name="message"><br>
+    {{form.as_p}}
     <button type="submit">submit</button>
   </form>
 </body>
