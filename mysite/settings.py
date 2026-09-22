@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.humanize',
     'django_extensions',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'myweb.apps.MywebConfig',
     'blogs.apps.BlogsConfig'
 ]
+
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
