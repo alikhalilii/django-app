@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse , HttpResponseRedirect
 from myweb.models import Contact
-from myweb.forms import NameForm , ContactForm
+from myweb.forms import NameForm , ContactForm , NewsletterForm
 # Create your views here.
 
 def home_view(request):
@@ -11,8 +11,21 @@ def about_view(request):
   return render(request, "website/about.html")
 
 def contact_view(request):
-  return render(request, "website/contact.html")
+    if request.method == "POST":
+      form = ContactForm(request.POST)
+      if form.is_valid():
+        form.save()
+    form = ContactForm()
+    return render(request, "website/contact.html", {'form':form})
 
+def newsletter_view(request):
+  if request.method == "POST":
+    form = NewsletterForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return HttpResponseRedirect("/")
+  else:
+    return HttpResponseRedirect("/")
 def elements_view(request):
   return render(request, "website/elements.html")
 
