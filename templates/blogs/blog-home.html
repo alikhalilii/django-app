@@ -128,7 +128,7 @@
             <a class="posts-title" href="{% url 'blogs:blog' pid=post.id %}"
               ><h3>{{post.title}}</h3></a
             >
-            <p class="excert">{{post.content|truncatechars:100}}</p>
+            <p class="excert">{{post.content|striptags|truncatechars:150}}</p>
             <a href="{% url 'blogs:blog' pid=post.id %}" class="primary-btn"
               >View More</a
             >
