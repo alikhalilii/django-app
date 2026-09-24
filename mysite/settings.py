@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'robots',
     'django.contrib.staticfiles',
     'taggit',
+    'captcha',
     'django_summernote',
     'myweb.apps.MywebConfig',
     'blogs.apps.BlogsConfig'
