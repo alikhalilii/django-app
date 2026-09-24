@@ -38,7 +38,7 @@ class Comment(models.Model):
   email = models.EmailField()
   subject = models.CharField(max_length=255)
   message = models.TextField()
-  is_approved = models.BooleanField()
+  is_approved = models.BooleanField(default=False)
   created_date = models.DateTimeField(auto_now_add=True)
   updated_date = models.DateTimeField(auto_now=True)
   class Meta:

@@ -158,13 +158,22 @@
         </div>
         <div class="comment-form">
           <h4>Leave a Comment</h4>
-          <form>
+          <form method="post" action="{% url 'blogs:blog' pid=post.id %}">
+            {% csrf_token %}
+            <div class="form-group name">
+                <input
+                  class="form-control"
+                  type="hidden"
+                  name="post"
+                  value="{{post.id}}"
+                />
+            </div>
             <div class="form-group form-inline">
               <div class="form-group col-lg-6 col-md-12 name">
                 <input
                   type="text"
                   class="form-control"
-                  id="name"
+                  name="name"
                   placeholder="Enter Name"
                   onfocus="this.placeholder = ''"
                   onblur="this.placeholder = 'Enter Name'"
@@ -174,7 +183,7 @@
                 <input
                   type="email"
                   class="form-control"
-                  id="email"
+                  name="email"
                   placeholder="Enter email address"
                   onfocus="this.placeholder = ''"
                   onblur="this.placeholder = 'Enter email address'"
@@ -185,7 +194,7 @@
               <input
                 type="text"
                 class="form-control"
-                id="subject"
+                name="subject"
                 placeholder="Subject"
                 onfocus="this.placeholder = ''"
                 onblur="this.placeholder = 'Subject'"
@@ -202,8 +211,31 @@
                 required=""
               ></textarea>
             </div>
-            <a href="#" class="primary-btn text-uppercase">Post Comment</a>
+            <button type="submit" class="primary-btn text-uppercase">Post Comment</button>
           </form>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+          {% endfor %}
+        {% endif %}
+
+        {% if form.errors %}
+          <div class="alert alert-error">
+            <h4>Please fix the following errors</h4>
+            <ul>
+              {% for field in form %}
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                    <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% if form.non_field_errors %}
+              {{ form.non_field_errors }}
+            {% endif %}
+          </div>
+        {% endif %}
         </div>
       </div>
       <div class="col-lg-4 sidebar-widgets">
