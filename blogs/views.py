@@ -3,6 +3,9 @@ from .models import Post , Comment
 from blogs.forms import CommentForm
 from django.contrib import messages
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 # Create your views here.
 
@@ -48,7 +51,13 @@ def blog(request, pid):
   comments = Comment.objects.filter(post=post.id, is_approved=True)
   form = CommentForm()
   context = {"post":post,"comments":comments, "form":form}
-  return render(request, "blogs/blog-single.html", context)
+  if not post.login_required:
+    return render(request, "blogs/blog-single.html", context)
+  else:
+    if not request.user.is_authenticated:
+      return HttpResponseRedirect(reverse("accounts:login"))
+    else:
+      return render(request, "blogs/blog-single.html", context)
 
 def blog_search(request):
   posts = Post.objects.filter(status = 1)

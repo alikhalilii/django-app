@@ -169,6 +169,10 @@
                 />
             </div>
             <div class="form-group form-inline">
+              {% if request.user.is_authenticated %}
+              <input type="hidden" value="{{request.user.first_name}}">
+              <input type="hidden" value="{{request.user.email}}">
+              {% else %}
               <div class="form-group col-lg-6 col-md-12 name">
                 <input
                   type="text"
@@ -189,6 +193,7 @@
                   onblur="this.placeholder = 'Enter email address'"
                 />
               </div>
+              {% endif %}
             </div>
             <div class="form-group">
               <input
